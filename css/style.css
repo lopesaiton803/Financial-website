@@ -7,6 +7,9 @@
     --dark: #011A41;
 }
 
+
+
+
 .back-to-top {
     position: fixed;
     display: none;
@@ -569,4 +572,65 @@ h6,
 
 .copyright a:hover {
     color: var(--primary);
+}
+
+
+/* Quando a navbar estiver no mobile */
+@media (max-width: 991.98px) {
+    .navbar-collapse.show .nav-link {
+        color: var(--primary) !important;
+    }
+}
+
+
+
+
+/* CORREÇÕES ESPECÍFICAS PARA O TOGGLER */
+@media (max-width: 991.98px) {
+    /* Garantir que o menu feche com animação */
+    .navbar-collapse {
+        transition: all 0.3s ease-in-out !important;
+    }
+    
+    .navbar-collapse:not(.show) {
+        display: none !important;
+    }
+    
+    .navbar-collapse.show {
+        display: block !important;
+        animation: slideDown 0.3s ease-in-out;
+    }
+    
+    /* Estilo para o toggler quando ativo */
+    .navbar-toggler.active {
+        background: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Animações suaves */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Prevenir que o menu fique travado aberto */
+    .navbar-collapse.collapsing {
+        transition: height 0.35s ease;
+    }
+}
+
+/* GARANTIR COMPATIBILIDADE COM BOOTSTRAP */
+.collapse:not(.show) {
+    display: none;
+}
+
+.collapsing {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
 }
