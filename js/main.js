@@ -310,3 +310,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+// JavaScript para alternar entre hamburger e X no toggler com animação
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.getElementById('navbarCollapse');
+    const heroContainer = document.querySelector('.hero-container');
+    
+    navbarToggler.addEventListener('click', function() {
+        // Alternar entre hamburger e X
+        this.classList.toggle('active');
+        
+        // Ajustar posição do hero quando menu estiver aberto
+        if (navbarCollapse.classList.contains('show')) {
+            heroContainer.classList.remove('adjusted');
+        } else {
+            heroContainer.classList.add('adjusted');
+        }
+    });
+    
+    // Fechar menu ao clicar em um link (opcional)
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navbarToggler.classList.remove('active');
+            heroContainer.classList.remove('adjusted');
+        });
+    });
+});
+
+
+// ---------------------------------------------------
+
+
+

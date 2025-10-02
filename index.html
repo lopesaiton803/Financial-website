@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Finanza - Serviços Financeiros</title>
+    <title>Erikalya Microcredito</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -41,6 +41,40 @@
         html {
             scroll-behavior: smooth;
         }
+        
+        /* CORREÇÕES ESPECÍFICAS */
+        
+        /* Hero Image - Altura controlada */
+        .hero-container {
+            height: 100vh;
+            max-height: 1000px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .hero-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* Overlay mais escuro para melhor contraste */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(1, 26, 65, 0.6); /* Aumentei a opacidade para 60% */
+            z-index: 1;
+        }
+      
+        /* Otimização de imagens - placeholder para fallback */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -64,7 +98,7 @@
                 <img src="img/logo.png" alt="Finanza Microcrédito" width="180px">
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse">
+                data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Alternar navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -92,52 +126,55 @@
     </div>
     <!-- Navbar End -->
 
-    <!-- Início (Carousel) -->
-  <div id="inicio" class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
-  <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active position-relative">
-        
-        <!-- Imagem -->
-        <img class="w-100" src="img/hero.jpg" alt="Soluções de microcrédito">
-        
-        <!-- Overlay com opacidade -->
-        <div class="hero-overlay"></div>
+    <!-- Início (Carousel) - CORRIGIDO -->
+    <div id="inicio" class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="hero-container">
+                        <!-- Imagem otimizada com fallback -->
+                        <img class="w-100" src="img/hero.jpg" alt="Soluções de microcrédito" loading="eager">
+                        
+                        <!-- Overlay com opacidade aumentada -->
+                        <div class="hero-overlay"></div>
 
-        <!-- Conteúdo -->
-        <div class="carousel-caption text-start"  style="top: 30%; transform: translateY(-30%);">
-          <div class="container">
-            <div class="row justify-content-start">
-              <div class="col-lg-8">
-                <p class="d-inline-block text-white bg-primary rounded fw-bold py-1 px-3 animated slideInDown">
-                  Bem-vindo à Erikalya Microcrédito
-                </p>
+                        <!-- Conteúdo -->
+                  <div class="carousel-caption text-start" style="top: 40%; transform: translateY(-10%);">
+                            <div class="container">
+                                <div class="row justify-content-start">
+                                    <div class="col-lg-8">
+                                        <p class="d-inline-block text-white bg-primary rounded fw-bold py-1 px-3 animated slideInDown mb-4">
+                                            Bem-vindo à Erikalya Microcrédito
+                                        </p>
 
-                <h1 class="display-1 mb-4 animated slideInDown">
-                  <span style="color: white;">Soluções de microcrédito rápidas.</span>
-                </h1>
+                                        <h1 class="display-1 mb-4 animated slideInDown">
+                                            <span style="color: white;">Soluções de microcrédito rápidas.</span>
+                                        </h1>
 
-                <a href="#sobre" class="btn py-3 px-5 animated slideInDown" style="background-color: #355EFC; color: white; font-weight:600;">
-                  Saiba Mais
-                </a>
-              </div>
+                                        <a href="#sobre" 
+                                        class="btn py-3 px-5 animated slideInDown mt-3" 
+                                        style="background-color: #355EFC; color: white; font-weight:600;">
+                                            Saiba Mais
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-      </div>
     </div>
-  </div>
-</div>
-
     <!-- Carousel End -->
 
+    <!-- Restante do código permanece igual -->
     <!-- Sobre Nós -->
     <div id="sobre" class="container-xxl py-5">
         <div class="container">
             <div class="row g-4 align-items-end mb-4">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded" src="img/other.jpg" alt="Sobre a Finanza">
+                    <img class="img-fluid rounded" src="img/other.jpg" alt="Sobre a Finanza" loading="lazy">
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                     <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Sobre Nós</p>
@@ -183,251 +220,129 @@
                 </div>
             </div>
             <div class="border rounded p-4 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="row g-4">
-        <!-- Primeiro item -->
-        <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-            <div class="h-100">
-                <div class="d-flex">
-                    <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
-                        <i class="fa fa-hand-holding-usd text-white"></i>
+                <div class="row g-4">
+                    <!-- Primeiro item -->
+                    <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="h-100">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                    <i class="fa fa-hand-holding-usd text-white"></i>
+                                </div>
+                                <div class="ps-4">
+                                    <h4>Crédito Acessível</h4>
+                                    <span>Empréstimos de baixo valor adaptados à realidade dos pequenos negócios moçambicanos</span>
+                                </div>
+                                <div class="border-end d-none d-lg-block"></div>
+                            </div>
+                            <div class="border-bottom mt-4 d-block d-lg-none"></div>
+                        </div>
                     </div>
-                    <div class="ps-4">
-                        <h4>Crédito Acessível</h4>
-                        <span>Empréstimos de baixo valor adaptados à realidade dos pequenos negócios moçambicanos</span>
-                    </div>
-                    <div class="border-end d-none d-lg-block"></div>
-                </div>
-                <div class="border-bottom mt-4 d-block d-lg-none"></div>
-            </div>
-        </div>
 
-        <!-- Segundo item -->
-        <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-            <div class="h-100">
-                <div class="d-flex">
-                    <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
-                        <i class="fa fa-seedling text-white"></i>
+                    <!-- Segundo item -->
+                    <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                        <div class="h-100">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                    <i class="fa fa-seedling text-white"></i>
+                                </div>
+                                <div class="ps-4">
+                                    <h4>Apoio a Pequenos Negócios</h4>
+                                    <span>Financiamento para vendedores informais, agricultores, taxistas e empreendedores locais</span>
+                                </div>
+                                <div class="border-end d-none d-lg-block"></div>
+                            </div>
+                            <div class="border-bottom mt-4 d-block d-lg-none"></div>
+                        </div>
                     </div>
-                    <div class="ps-4">
-                        <h4>Apoio a Pequenos Negócios</h4>
-                        <span>Financiamento para vendedores informais, agricultores, taxistas e empreendedores locais</span>
-                    </div>
-                    <div class="border-end d-none d-lg-block"></div>
-                </div>
-                <div class="border-bottom mt-4 d-block d-lg-none"></div>
-            </div>
-        </div>
 
-        <!-- Terceiro item -->
-        <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-            <div class="h-100">
-                <div class="d-flex">
-                    <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
-                        <i class="fa fa-university text-white"></i>
-                    </div>
-                    <div class="ps-3">
-                        <h4>Inclusão Financeira</h4>
-                        <span>Serviços pensados para comunidades sem acesso fácil aos bancos tradicionais</span>
+                    <!-- Terceiro item -->
+                    <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="h-100">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                    <i class="fa fa-university text-white"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h4>Inclusão Financeira</h4>
+                                    <span>Serviços pensados para comunidades sem acesso fácil aos bancos tradicionais</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
         </div>
     </div>
     <!-- Sobre End -->
 
-   <!-- Seção CTA Profissional -->
-<!-- Seção CTA Profissional -->
-<!-- Seção CTA Profissional com Gradiente -->
-<!-- Seção CTA com Gradiente de Fundo -->
-<div class="container-fluid py-5" style="background: linear-gradient(135deg, #355EFC, #ffffff);">
-    <div class="container py-5 text-center wow fadeIn" data-wow-delay="0.1s">
-        <h2 class="fw-bold mb-3" style="color:#fff; text-shadow: 1px 1px 5px rgba(0,0,0,0.3);">
-            Dê o próximo passo para expandir seu negócio
+    <!-- Restante do código permanece igual -->
+    <!-- Seção CTA com Gradiente de Fundo -->
+    <div class="container-fluid cta-parallax py-5" style="background-image: url('img/paperwork.jpg'); min-height: 400px;">
+    <div class="cta-overlay"></div>
+    <div class="container py-5 text-center text-white cta-content wow fadeIn" data-wow-delay="0.1s">
+        <h2 class="fw-bold mb-3  text-white">
+            Avance com segurança e transforme sua vida financeira
         </h2>
-        <p class="fs-5 mb-4" style="color:#f0f0f0;">
-            Alcance seus objetivos com microcrédito ágil e confiável. Soluções financeiras pensadas para o crescimento do seu negócio.
+        <p class="fs-5 mb-4" style="text-shadow: 1px 1px 5px rgba(0,0,0,0.4);">
+            Descubra como o microcrédito pode ajudá-lo(a) a concretizar seus projetos. Soluções acessíveis, apoio local e transparência total.
         </p>
-        <a href="#solicitar" class="btn btn-lg fw-bold" style="
-            background-color: #ffffff;
-            color: #355EFC;
-            padding: 18px 50px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            box-shadow: 0 8px 20px rgba(53, 94, 252, 0.4);
-            transition: all 0.3s ease-in-out;
-        " 
-        onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 25px rgba(53,94,252,0.5)';" 
-        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 20px rgba(53,94,252,0.4)';">
-            Solicite Seu Crédito Agora
+        <a href="#solicitar" class="btn btn-light btn-lg fw-bold" style="
+                color: #355EFC;
+                background-color: #ffffff;
+                padding: 18px 20px;
+                border-radius: 20px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+                transition: all 0.3s ease-in-out;
+            "
+            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 25px rgba(0,0,0,0.5)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.3)';">
+            Quero meu Microcrédito
         </a>
     </div>
 </div>
-<!-- CTA End -->
+    <!-- CTA End -->
 
-<!-- CTA End -->
-
-<!-- CTA End -->
-
-<!-- CTA End -->
-
-
-   <!-- Por Que Nos Escolher -->
-<div class="container-xxl feature py-5">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Por Que Nos Escolher!</p>
-                <h1 class="display-5 mb-4">Microcrédito seguro e acessível para empreendedores e famílias</h1>
-                <p class="mb-4">
-                    Na nossa empresa, entendemos os desafios de empreendedores e famílias em Moçambique. Por isso oferecemos soluções de microcrédito rápidas, seguras e acessíveis, adaptadas às necessidades locais. Nosso compromisso é apoiar você a investir no seu negócio, nos seus projetos pessoais ou no futuro da sua família, sempre com transparência, segurança e acompanhamento próximo. Aqui, cada empréstimo é uma oportunidade de crescimento real e sustentável.
-                </p>
-                <a class="btn btn-primary py-3 px-5" href="#servicos">Saiba Mais</a>
-            </div>
-            <div class="col-lg-6">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-6">
-                        <div class="row g-4">
-                            <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
-                                <div class="feature-box border rounded p-4">
-                                    <i class="fa fa-check fa-3x text-primary mb-3"></i>
-                                    <h4 class="mb-3">Aprovação Rápida</h4>
-                                    <p class="mb-3">Solicitações processadas de forma ágil, para que você receba o crédito quando mais precisa.</p>
-                                    <a class="fw-semi-bold" href="#servicos">Saiba Mais <i class="fa fa-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
-                                <div class="feature-box border rounded p-4">
-                                    <i class="fa fa-check fa-3x text-primary mb-3"></i>
-                                    <h4 class="mb-3">Seguro e Transparente</h4>
-                                    <p class="mb-3">Garantimos total transparência em cada operação, protegendo seus dados e recursos.</p>
-                                    <a class="fw-semi-bold" href="#servicos">Saiba Mais <i class="fa fa-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
-                        <div class="feature-box border rounded p-4">
-                            <i class="fa fa-check fa-3x text-primary mb-3"></i>
-                            <h4 class="mb-3">Suporte Local Personalizado</h4>
-                            <p class="mb-3">Acompanhamento próximo e planos de pagamento adaptados à realidade de cada cliente em Moçambique.</p>
-                            <a class="fw-semi-bold" href="#servicos">Saiba Mais <i class="fa fa-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
+    <!-- Restante do código permanece igual -->
+    <!-- Por Que Nos Escolher -->
+    <div class="container-xxl feature py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Por Que Nos Escolher!</p>
+                    <h1 class="display-5 mb-4">Microcrédito seguro e acessível para empreendedores e famílias</h1>
+                    <p class="mb-4">
+                        Na nossa empresa, entendemos os desafios de empreendedores e famílias em Moçambique. Por isso oferecemos soluções de microcrédito rápidas, seguras e acessíveis, adaptadas às necessidades locais. Nosso compromisso é apoiar você a investir no seu negócio, nos seus projetos pessoais ou no futuro da sua família, sempre com transparência, segurança e acompanhamento próximo. Aqui, cada empréstimo é uma oportunidade de crescimento real e sustentável.
+                    </p>
+                    <a class="btn btn-primary py-3 px-5" href="#servicos">Saiba Mais</a>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Por Que Nos Escolher End -->
-
-
-  <!-- Serviços -->
-<div id="servicos" class="container-xxl service py-5">
-    <div class="container">
-        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Nossos Serviços</p>
-            <h1 class="display-5 mb-5">Soluções de microcrédito para o seu crescimento</h1>
-        </div>
-        <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="col-lg-4">
-                <div class="nav nav-pills d-flex justify-content-between w-100 h-100 me-4">
-                    <button class="nav-link w-100 d-flex align-items-center text-start border p-4 mb-4 active"
-                        data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
-                        <h5 class="m-0"><i class="fa fa-users text-primary me-3"></i>Microcrédito para Empreendedores</h5>
-                    </button>
-                    <button class="nav-link w-100 d-flex align-items-center text-start border p-4 mb-4"
-                        data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
-                        <h5 class="m-0"><i class="fa fa-hand-holding-usd text-primary me-3"></i>Empréstimos Pessoais</h5>
-                    </button>
-                    <button class="nav-link w-100 d-flex align-items-center text-start border p-4 mb-4"
-                        data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
-                        <h5 class="m-0"><i class="fa fa-chart-line text-primary me-3"></i>Consultoria Financeira Local</h5>
-                    </button>
-                    <button  class="nav-link w-100 d-flex align-items-center text-start border p-4 mb-0"
-                        data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
-                        <h5 class="m-0"><i class=" fa fa-briefcase text-primary me-3"></i>Financiamento para Negócios</h5>
-                    </button>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="tab-content w-100">
-                    <!-- Microcrédito para Empreendedores -->
-                    <div class="tab-pane fade show active" id="tab-pane-1">
-                        <div class="row g-4">
-                            <div class="col-md-6" style="min-height: 350px;">
-                                <div class="position-relative h-100">
-                                    <img class="position-absolute rounded w-100 h-100" src="img/Microcredito para emprendedores.jpg"
-                                        style="object-fit: cover;" alt="Microcrédito para Empreendedores">
+                <div class="col-lg-6">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-6">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
+                                    <div class="feature-box border rounded p-4">
+                                        <i class="fa fa-check fa-3x text-primary mb-3"></i>
+                                        <h4 class="mb-3">Aprovação Rápida</h4>
+                                        <p class="mb-3">Solicitações processadas de forma ágil, para que você receba o crédito quando mais precisa.</p>
+                                        <a class="fw-semi-bold" href="#servicos">Saiba Mais <i class="fa fa-arrow-right ms-1"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="mb-4">Apoio rápido e confiável para empreendedores locais</h3>
-                                <p class="mb-4">Oferecemos microcrédito adaptado às necessidades de pequenos empreendedores moçambicanos, ajudando a expandir negócios e gerar novas oportunidades.</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Processo rápido e transparente</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Suporte personalizado</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Condições flexíveis</p>
-                                <a href="#contato" class="btn btn-primary py-3 px-5 mt-3">Saiba Mais</a>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
+                                    <div class="feature-box border rounded p-4">
+                                        <i class="fa fa-check fa-3x text-primary mb-3"></i>
+                                        <h4 class="mb-3">Seguro e Transparente</h4>
+                                        <p class="mb-3">Garantimos total transparência em cada operação, protegendo seus dados e recursos.</p>
+                                        <a class="fw-semi-bold" href="#servicos">Saiba Mais <i class="fa fa-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Empréstimos Pessoais -->
-                    <div class="tab-pane fade" id="tab-pane-2">
-                        <div class="row g-4">
-                            <div class="col-md-6" style="min-height: 350px;">
-                                <div class="position-relative h-100">
-                                    <img class="position-absolute rounded w-100 h-100" src="img/emprestimo pessoal.jpg"
-                                        style="object-fit: cover;" alt="Empréstimos Pessoais">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="mb-4">Crédito pessoal acessível e confiável</h3>
-                                <p class="mb-4">Nossos empréstimos pessoais são rápidos e flexíveis, permitindo que indivíduos financiem projetos, educação ou necessidades pessoais com segurança.</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Baixo risco</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Processo transparente</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Atendimento local</p>
-                                <a href="#contato" class="btn btn-primary py-3 px-5 mt-3">Saiba Mais</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Consultoria Financeira Local -->
-                    <div class="tab-pane fade" id="tab-pane-3">
-                        <div class="row g-4">
-                            <div class="col-md-6" style="min-height: 350px;">
-                                <div class="position-relative h-100">
-                                    <img class="position-absolute rounded w-100 h-100" src="img/consultoria financeira.jpg"
-                                        style="object-fit: cover;" alt="Consultoria Financeira Local">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="mb-4">Orientação financeira para resultados reais</h3>
-                                <p class="mb-4">Nossa consultoria financeira oferece apoio personalizado para que indivíduos e negócios tomem decisões inteligentes e cresçam de forma sustentável.</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Planejamento personalizado</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Estratégias de crescimento</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Acompanhamento contínuo</p>
-                                <a href="#contato" class="btn btn-primary py-3 px-5 mt-3">Saiba Mais</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Financiamento para Negócios -->
-                    <div class="tab-pane fade" id="tab-pane-4">
-                        <div class="row g-4">
-                            <div class="col-md-6" style="min-height: 350px;">
-                                <div class="position-relative h-100">
-                                    <img class="position-absolute rounded w-100 h-100" src="img/financiamento para negocios.jpg"
-                                        style="object-fit: cover;" alt="Financiamento para Negócios">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="mb-4">Expansão de negócios com suporte especializado</h3>
-                                <p class="mb-4">Oferecemos financiamentos para empresas locais crescerem, adquirirem equipamentos ou expandirem operações, com condições flexíveis e acompanhamento dedicado.</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Processo ágil</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Condições personalizadas</p>
-                                <p><i class="fa fa-check text-primary me-3"></i>Suporte local confiável</p>
-                                <a href="#contato" class="btn btn-primary py-3 px-5 mt-3">Saiba Mais</a>
+                        <div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
+                            <div class="feature-box border rounded p-4">
+                                <i class="fa fa-check fa-3x text-primary mb-3"></i>
+                                <h4 class="mb-3">Suporte Local Personalizado</h4>
+                                <p class="mb-3">Acompanhamento próximo e planos de pagamento adaptados à realidade de cada cliente em Moçambique.</p>
+                                <a class="fw-semi-bold" href="#servicos">Saiba Mais <i class="fa fa-arrow-right ms-1"></i></a>
                             </div>
                         </div>
                     </div>
@@ -435,54 +350,181 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Serviços End -->
+    <!-- Por Que Nos Escolher End -->
 
+    <!-- Restante do código permanece igual -->
+    <!-- Serviços -->
+    <div id="servicos" class="container-xxl service py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Nossos Serviços</p>
+                <h1 class="display-5 mb-5">Soluções de microcrédito para o seu crescimento</h1>
+            </div>
+            <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="col-lg-4">
+                    <div class="nav nav-pills d-flex justify-content-between w-100 h-100 me-4">
+                        <button class="nav-link w-100 d-flex align-items-center text-start border p-4 mb-4 active"
+                            data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
+                            <h5 class="m-0"><i class="fa fa-users text-primary me-3"></i>Microcrédito para Empreendedores</h5>
+                        </button>
+                        <button class="nav-link w-100 d-flex align-items-center text-start border p-4 mb-4"
+                            data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
+                            <h5 class="m-0"><i class="fa fa-hand-holding-usd text-primary me-3"></i>Empréstimos Pessoais</h5>
+                        </button>
+                        <button class="nav-link w-100 d-flex align-items-center text-start border p-4 mb-4"
+                            data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
+                            <h5 class="m-0"><i class="fa fa-chart-line text-primary me-3"></i>Consultoria Financeira Local</h5>
+                        </button>
+                        <button  class="nav-link w-100 d-flex align-items-center text-start border p-4 mb-0"
+                            data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
+                            <h5 class="m-0"><i class=" fa fa-briefcase text-primary me-3"></i>Financiamento para Negócios</h5>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="tab-content w-100">
+                        <!-- Microcrédito para Empreendedores -->
+                        <div class="tab-pane fade show active" id="tab-pane-1">
+                            <div class="row g-4">
+                                <div class="col-md-6" style="min-height: 350px;">
+                                    <div class="position-relative h-100">
+                                        <img class="position-absolute rounded w-100 h-100" src="img/Microcredito para emprendedores.jpg"
+                                            style="object-fit: cover;" alt="Microcrédito para Empreendedores" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3 class="mb-4">Apoio rápido e confiável para empreendedores locais</h3>
+                                    <p class="mb-4">Oferecemos microcrédito adaptado às necessidades de pequenos empreendedores moçambicanos, ajudando a expandir negócios e gerar novas oportunidades.</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Processo rápido e transparente</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Suporte personalizado</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Condições flexíveis</p>
+                                    <a href="#contato" class="btn btn-primary py-3 px-5 mt-3">Saiba Mais</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Empréstimos Pessoais -->
+                        <div class="tab-pane fade" id="tab-pane-2">
+                            <div class="row g-4">
+                                <div class="col-md-6" style="min-height: 350px;">
+                                    <div class="position-relative h-100">
+                                        <img class="position-absolute rounded w-100 h-100" src="img/emprestimo pessoal.jpg"
+                                            style="object-fit: cover;" alt="Empréstimos Pessoais" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3 class="mb-4">Crédito pessoal acessível e confiável</h3>
+                                    <p class="mb-4">Nossos empréstimos pessoais são rápidos e flexíveis, permitindo que indivíduos financiem projetos, educação ou necessidades pessoais com segurança.</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Baixo risco</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Processo transparente</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Atendimento local</p>
+                                    <a href="#contato" class="btn btn-primary py-3 px-5 mt-3">Saiba Mais</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Consultoria Financeira Local -->
+                        <div class="tab-pane fade" id="tab-pane-3">
+                            <div class="row g-4">
+                                <div class="col-md-6" style="min-height: 350px;">
+                                    <div class="position-relative h-100">
+                                        <img class="position-absolute rounded w-100 h-100" src="img/consultoria financeira.jpg"
+                                            style="object-fit: cover;" alt="Consultoria Financeira Local" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3 class="mb-4">Orientação financeira para resultados reais</h3>
+                                    <p class="mb-4">Nossa consultoria financeira oferece apoio personalizado para que indivíduos e negócios tomem decisões inteligentes e cresçam de forma sustentável.</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Planejamento personalizado</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Estratégias de crescimento</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Acompanhamento contínuo</p>
+                                    <a href="#contato" class="btn btn-primary py-3 px-5 mt-3">Saiba Mais</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Financiamento para Negócios -->
+                        <div class="tab-pane fade" id="tab-pane-4">
+                            <div class="row g-4">
+                                <div class="col-md-6" style="min-height: 350px;">
+                                    <div class="position-relative h-100">
+                                        <img class="position-absolute rounded w-100 h-100" src="img/financiamento para negocios.jpg"
+                                            style="object-fit: cover;" alt="Financiamento para Negócios" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3 class="mb-4">Expansão de negócios com suporte especializado</h3>
+                                    <p class="mb-4">Oferecemos financiamentos para empresas locais crescerem, adquirirem equipamentos ou expandirem operações, com condições flexíveis e acompanhamento dedicado.</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Processo ágil</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Condições personalizadas</p>
+                                    <p><i class="fa fa-check text-primary me-3"></i>Suporte local confiável</p>
+                                    <a href="#contato" class="btn btn-primary py-3 px-5 mt-3">Saiba Mais</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Serviços End -->
 
+    <!-- Restante do código permanece igual -->
     <!-- Simulador de Microcrédito -->
-    <div id="simulador" class="container-fluid microcredit-simulator my-5 pt-5">
-        <div class="container pt-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="bg-white border rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                            <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">
-                                Simulador de Microcrédito
-                            </p>
-                            <h1 class="display-5 mb-5">Calcule seu Empréstimo</h1>
-                        </div>
-
-                        <!-- Valor do Empréstimo -->
-                        <div class="mb-4">
-                            <label for="loanAmount" class="form-label">Valor do Empréstimo: <span id="loanAmountDisplay">1000</span> USD</label>
-                            <input type="range" class="form-range" min="500" max="10000" step="100" id="loanAmount">
-                        </div>
-
-                        <!-- Prazo do Empréstimo -->
-                        <div class="mb-4">
-                            <label for="loanTerm" class="form-label">Prazo (meses): <span id="loanTermDisplay">6</span> meses</label>
-                            <input type="range" class="form-range" min="1" max="24" step="1" id="loanTerm">
-                        </div>
-
-                        <!-- Taxa de Juros -->
-                        <div class="mb-4">
-                            <label class="form-label">Taxa de Juros Mensal: 2%</label>
-                        </div>
-
-                        <!-- Parcela Mensal -->
-                        <div class="mb-4 text-center">
-                            <h4>Parcela Mensal: <span id="monthlyPayment">0</span> USD</h4>
-                            <small class="text-muted">O cálculo é aproximado</small>
-                        </div>
-
-                        <div class="text-center">
-                            <button class="btn btn-primary w-100 py-3" id="simulateBtn">Simular Empréstimo</button>
-                        </div>
+   
+       <div id="simulador" class="container-fluid microcredit-simulator my-5 pt-5">
+    <div class="container pt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="bg-white border rounded p-4 p-sm-5 shadow-sm wow fadeInUp" data-wow-delay="0.5s">
+                    
+                    <!-- Título -->
+                    <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                        <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">
+                            Simulador de Microcrédito
+                        </p>
+                        <h1 class="display-6 mb-3">Calcule a sua Prestação</h1>
+                        <p class="text-muted">Veja quanto vai pagar por mês de forma simples e rápida</p>
                     </div>
+
+                    <!-- Valor do Empréstimo -->
+                    <div class="mb-4">
+                        <label for="loanAmount" class="form-label">
+                            Valor do Empréstimo: <span id="loanAmountDisplay">5,000</span> MZN
+                        </label>
+                        <input type="range" class="form-range" min="1000" max="50000" step="500" id="loanAmount">
+                    </div>
+
+                    <!-- Prazo do Empréstimo -->
+                    <div class="mb-4">
+                        <label for="loanTerm" class="form-label">
+                            Prazo: <span id="loanTermDisplay">6</span> meses
+                        </label>
+                        <input type="range" class="form-range" min="3" max="24" step="1" id="loanTerm">
+                    </div>
+
+                    <!-- Taxa de Juros -->
+                    <div class="mb-4">
+                        <label class="form-label">Taxa de Juros: 2% ao mês</label>
+                    </div>
+
+                    <!-- Parcela Mensal -->
+                    <div class="mb-4 text-center bg-light p-3 rounded">
+                        <h4 style="color:#355EFC;">Prestação Mensal: <span id="monthlyPayment">0</span> MZN</h4>
+                        <small class="text-muted">* Cálculo aproximado para facilitar sua decisão</small>
+                    </div>
+
+                    <!-- Botão -->
+                    <div class="text-center">
+                        <button class="btn btn-primary w-100 py-3 fw-bold" id="simulateBtn" style="background: linear-gradient(135deg, #355EFC, #4a77ff); border: none;">
+                            Simular Empréstimo
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+      
     <!-- Simulador de Microcrédito End -->
 
     <script>
@@ -521,122 +563,123 @@
         calculatePayment();
     </script>
 
-   <!-- Depoimentos -->
-<div id="depoimentos" class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Depoimentos</p>
-            <h1 class="display-5 mb-5">O Que Nossos Clientes Dizem!</h1>
-        </div>
-        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
-            <div class="testimonial-item">
-                <div class="testimonial-text border rounded p-4 pt-5 mb-5">
-                    <div class="btn-square bg-white border rounded-circle">
-                        <i class="fa fa-quote-right fa-2x text-primary"></i>
+    <!-- Restante do código permanece igual -->
+    <!-- Depoimentos -->
+    <div id="depoimentos" class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Depoimentos</p>
+                <h1 class="display-5 mb-5">O Que Nossos Clientes Dizem!</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
+                <div class="testimonial-item">
+                    <div class="testimonial-text border rounded p-4 pt-5 mb-5">
+                        <div class="btn-square bg-white border rounded-circle">
+                            <i class="fa fa-quote-right fa-2x text-primary"></i>
+                        </div>
+                        O microcrédito da Erikalya foi essencial para expandir meu pequeno negócio. O processo foi rápido e a equipe muito atenciosa. Recomendo a todos os empreendedores!
                     </div>
-                    O microcrédito da Erikalya foi essencial para expandir meu pequeno negócio. O processo foi rápido e a equipe muito atenciosa. Recomendo a todos os empreendedores!
+                    <img class="rounded-circle mb-3" src="img/ana.jpg" alt="Cliente Satisfeito" loading="lazy">
+                    <h4>Maria João</h4>
+                    <span>Pequena Empresária</span>
                 </div>
-                <img class="rounded-circle mb-3" src="img/ana.jpg" alt="Cliente Satisfeito">
-                <h4>Maria João</h4>
-                <span>Pequena Empresária</span>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-text border rounded p-4 pt-5 mb-5">
-                    <div class="btn-square bg-white border rounded-circle">
-                        <i class="fa fa-quote-right fa-2x text-primary"></i>
+                <div class="testimonial-item">
+                    <div class="testimonial-text border rounded p-4 pt-5 mb-5">
+                        <div class="btn-square bg-white border rounded-circle">
+                            <i class="fa fa-quote-right fa-2x text-primary"></i>
+                        </div>
+                        Graças ao financiamento que recebi, pude investir na minha padaria e hoje tenho uma clientela fiel. A Erikalya realmente apoia pequenos negócios!
                     </div>
-                    Graças ao financiamento que recebi, pude investir na minha padaria e hoje tenho uma clientela fiel. A Erikalya realmente apoia pequenos negócios!
+                    <img class="rounded-circle mb-3" src="img/testimonial-2.jpg" alt="Cliente Satisfeito" loading="lazy">
+                    <h4>Carlos Alberto</h4>
+                    <span>Proprietário de Padaria</span>
                 </div>
-                <img class="rounded-circle mb-3" src="img/testimonial-2.jpg" alt="Cliente Satisfeito">
-                <h4>Carlos Alberto</h4>
-                <span>Proprietário de Padaria</span>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-text border rounded p-4 pt-5 mb-5">
-                    <div class="btn-square bg-white border rounded-circle">
-                        <i class="fa fa-quote-right fa-2x text-primary"></i>
+                <div class="testimonial-item">
+                    <div class="testimonial-text border rounded p-4 pt-5 mb-5">
+                        <div class="btn-square bg-white border rounded-circle">
+                            <i class="fa fa-quote-right fa-2x text-primary"></i>
+                        </div>
+                        A consultoria financeira me ajudou a organizar minhas finanças e planejar melhor meus investimentos. Serviço de excelência!
                     </div>
-                    A consultoria financeira me ajudou a organizar minhas finanças e planejar melhor meus investimentos. Serviço de excelência!
+                    <img class="rounded-circle mb-3" src="img/testimonial-3.jpg" alt="Cliente Satisfeito" loading="lazy">
+                    <h4>Ana Silva</h4>
+                    <span>Microempreendedora</span>
                 </div>
-                <img class="rounded-circle mb-3" src="img/testimonial-3.jpg" alt="Cliente Satisfeito">
-                <h4>Ana Silva</h4>
-                <span>Microempreendedora</span>
-            </div>
-            <div class="testimonial-item">
-                <div class="testimonial-text border rounded p-4 pt-5 mb-5">
-                    <div class="btn-square bg-white border rounded-circle">
-                        <i class="fa fa-quote-right fa-2x text-primary"></i>
+                <div class="testimonial-item">
+                    <div class="testimonial-text border rounded p-4 pt-5 mb-5">
+                        <div class="btn-square bg-white border rounded-circle">
+                            <i class="fa fa-quote-right fa-2x text-primary"></i>
+                        </div>
+                        Consegui financiar a compra de equipamentos para minha oficina com condições justas e um atendimento humanizado. Muito obrigado!
                     </div>
-                    Consegui financiar a compra de equipamentos para minha oficina com condições justas e um atendimento humanizado. Muito obrigado!
-                </div>
-                <img class="rounded-circle mb-3" src="img/pexels-gabby-k-6999225.jpg" alt="Cliente Satisfeito">
-                <h4>José Fernandes</h4>
-                <span>Mecânico Automotivo</span>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Depoimentos End -->
-  <!-- Contact Start -->
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Contato</p>
-                <h1 class="display-5 mb-4">Se Tem Alguma Pergunta, Entre em Contato Conosco</h1>
-                <p class="mb-4">
-                    O formulário de contato está atualmente inativo. Obtenha um formulário funcional e pronto para uso com Ajax & PHP em poucos minutos. Basta copiar e colar os arquivos, adicionar um pouco de código e pronto. 
-                    <a href="https://htmlcodex.com/contact-form">Baixar Agora</a>.
-                </p>
-                <form>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="name" placeholder="Seu Nome">
-                                <label for="name">Seu Nome</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="email" placeholder="Seu Email">
-                                <label for="email">Seu Email</label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="subject" placeholder="Assunto">
-                                <label for="subject">Assunto</label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Escreva sua mensagem aqui" id="message"
-                                    style="height: 100px"></textarea>
-                                <label for="message">Mensagem</label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary py-3 px-5" type="submit">Enviar Mensagem</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px;">
-                <div class="position-relative rounded overflow-hidden h-100">
-                    <iframe class="position-relative w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.755878345879!2d32.56712231524955!3d-25.965119783598112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7b0f88b8c15f5%3A0x9a1b3a5b1c0d1f3a!2sAvenida%2024%20de%20Julho%2C%20Maputo%2C%20Mo%C3%A7ambique!5e0!3m2!1spt-PT!2smz!4v1696263890143!5m2!1spt-PT!2smz"
-                        frameborder="0" style="min-height: 450px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
+                    <img class="rounded-circle mb-3" src="img/pexels-gabby-k-6999225.jpg" alt="Cliente Satisfeito" loading="lazy">
+                    <h4>José Fernandes</h4>
+                    <span>Mecânico Automotivo</span>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Contact End -->
+    <!-- Depoimentos End -->
 
+    <!-- Restante do código permanece igual -->
+    <!-- Contact Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Contato</p>
+                    <h1 class="display-5 mb-4">Se Tem Alguma Pergunta, Entre em Contato Conosco</h1>
+                    <p class="mb-4">
+                        O formulário de contato está atualmente inativo. Obtenha um formulário funcional e pronto para uso com Ajax & PHP em poucos minutos. Basta copiar e colar os arquivos, adicionar um pouco de código e pronto. 
+                        <a href="https://htmlcodex.com/contact-form">Baixar Agora</a>.
+                    </p>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Seu Nome">
+                                    <label for="name">Seu Nome</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Seu Email">
+                                    <label for="email">Seu Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Assunto">
+                                    <label for="subject">Assunto</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Escreva sua mensagem aqui" id="message"
+                                        style="height: 100px"></textarea>
+                                    <label for="message">Mensagem</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary py-3 px-5" type="submit">Enviar Mensagem</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px;">
+                    <div class="position-relative rounded overflow-hidden h-100">
+                        <iframe class="position-relative w-100 h-100"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.755878345879!2d32.56712231524955!3d-25.965119783598112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7b0f88b8c15f5%3A0x9a1b3a5b1c0d1f3a!2sAvenida%2024%20de%20Julho%2C%20Maputo%2C%20Mo%C3%A7ambique!5e0!3m2!1spt-PT!2smz!4v1696263890143!5m2!1spt-PT!2smz"
+                            frameborder="0" style="min-height: 450px; border:0;" allowfullscreen="" aria-hidden="false"
+                            tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
 
-
-
+    <!-- Restante do código permanece igual -->
     <!-- Footer Start -->
     <div id="contato" class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
