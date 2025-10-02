@@ -1,7 +1,7 @@
 /********** Template CSS **********/
 :root {
     --primary: #355EFC;
-    --secondary: #E93C05;
+   
     --tertiary: #555555;
     --light: #DFE4FD;
     --dark: #011A41;
@@ -16,6 +16,10 @@
     right: 30px;
     bottom: 30px;
     z-index: 99;
+}
+
+a{
+    color: #eeeeee;
 }
 
 h1,
@@ -104,12 +108,14 @@ h6,
     color: white;
 }
 
-.highlight-text {
-    background-color: #7b7979; /* cor que você quer */
-    padding: 0 10px;           /* espaço ao redor do texto */
-    display: inline;           /* garante que o fundo só pegue o texto */
-    color: white;
+.navbar-brand img {
+  background: #ffffffcc; /* branco semi-transparente */
+  padding: 8px 8px;
+  border-radius: 8px;
 }
+
+
+
 .top-bar {
     height: 45px;
     border-bottom: 4px solid rgba(40, 69, 185, 0.07);
@@ -133,7 +139,7 @@ h6,
 
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: blue;
 }
 
 @media (max-width: 991.98px) {
@@ -168,6 +174,22 @@ h6,
 }
 
 
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 26, 65, 0.3); /* azul escuro com 60% opacidade */
+  z-index: 1;
+}
+
+.carousel-caption {
+  position: absolute;
+  z-index: 2; /* garante que o texto fique acima do overlay */
+}
+
+
 /*** Header ***/
 .carousel-caption {
     top: 0;
@@ -180,6 +202,10 @@ h6,
     text-align: start;
     z-index: 1;
 }
+
+
+
+
 
 .carousel-control-prev,
 .carousel-control-next {
@@ -309,6 +335,10 @@ h6,
 
 .service .nav .nav-link.active h5 i {
     color: #FFFFFF !important;
+}
+
+.feature-box a{
+    color: #011A41;
 }
 
 
