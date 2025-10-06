@@ -204,6 +204,103 @@ h6,
         opacity: 1;
     }
 }
+/* Estilos para o navbar toggler */
+.navbar-toggler {
+    border: none;
+    background: transparent !important;
+    padding: 4px 8px;
+    position: relative;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Animação do ícone hamburger para X */
+.navbar-toggler .navbar-toggler-icon {
+    width: 24px;
+    height: 24px;
+    background-image: none !important;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler .navbar-toggler-icon::before,
+.navbar-toggler .navbar-toggler-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler .navbar-toggler-icon::before {
+    top: 6px;
+}
+
+.navbar-toggler .navbar-toggler-icon::after {
+    bottom: 6px;
+}
+
+.navbar-toggler .navbar-toggler-icon span {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+/* Estado quando o menu está aberto (transforma em X) */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+    transform: rotate(45deg);
+    top: 50%;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+    transform: rotate(-45deg);
+    bottom: 50%;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon span {
+    opacity: 0;
+    transform: scale(0);
+}
+
+/* Estilos para o menu mobile */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(1, 26, 65, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 12px 20px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+    
+    .navbar-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    .navbar-nav .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+
 
 
 .hero-overlay {
@@ -671,44 +768,7 @@ h6,
 
 
 
-/* CORREÇÕES ESPECÍFICAS PARA O TOGGLER */
-@media (max-width: 991.98px) {
-    /* Garantir que o menu feche com animação */
-    .navbar-collapse {
-        transition: all 0.3s ease-in-out !important;
-    }
-    
-    .navbar-collapse:not(.show) {
-        display: none !important;
-    }
-    
-    .navbar-collapse.show {
-        display: block !important;
-        animation: slideDown 0.3s ease-in-out;
-    }
-    
-    /* Estilo para o toggler quando ativo */
-    .navbar-toggler.active {
-        background: rgba(255, 255, 255, 0.1) !important;
-    }
-    
-    /* Animações suaves */
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    /* Prevenir que o menu fique travado aberto */
-    .navbar-collapse.collapsing {
-        transition: height 0.35s ease;
-    }
-}
+
 
 /* GARANTIR COMPATIBILIDADE COM BOOTSTRAP */
 .collapse:not(.show) {
@@ -754,91 +814,7 @@ h6,
 
 
 
-  /* Correção do toggler mobile - Animação Hamburger para X */
-.navbar-toggler {
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 8px 6px;
-    width: 40px;
-    height: 40px;
-    transition: all 0.3s ease;
-    position: relative;
-    background: transparent;
-}
 
-.navbar-toggler:focus {
-    box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
-    outline: none;
-}
-
-/* Toggler customizado - Hamburger animado para X */
-.navbar-toggler .navbar-toggler-icon {
-    background-image: none;
-    position: relative;
-    width: 24px;
-    height: 18px;
-    transition: all 0.3s ease;
-    display: block;
-}
-
-.navbar-toggler .navbar-toggler-icon::before,
-.navbar-toggler .navbar-toggler-icon::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: white;
-    transition: all 0.3s ease;
-    transform-origin: center;
-}
-
-.navbar-toggler .navbar-toggler-icon::before {
-    top: 0;
-}
-
-.navbar-toggler .navbar-toggler-icon::after {
-    bottom: 0;
-}
-
-.navbar-toggler .navbar-toggler-icon span {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: white;
-    transform: translateY(-50%);
-    transition: all 0.3s ease;
-    opacity: 1;
-}
-
-/* Estado inicial - Hamburger (três traços) */
-.navbar-toggler:not(.active) .navbar-toggler-icon::before {
-    transform: translateY(0) rotate(0deg);
-}
-
-.navbar-toggler:not(.active) .navbar-toggler-icon::after {
-    transform: translateY(0) rotate(0deg);
-}
-
-.navbar-toggler:not(.active) .navbar-toggler-icon span {
-    opacity: 1;
-    transform: translateY(-50%) scaleX(1);
-}
-
-/* Estado ativo - X (cruz) */
-.navbar-toggler.active .navbar-toggler-icon::before {
-    transform: rotate(45deg) translate(6px, 6px);
-}
-
-.navbar-toggler.active .navbar-toggler-icon::after {
-    transform: rotate(-45deg) translate(6px, -6px);
-}
-
-.navbar-toggler.active .navbar-toggler-icon span {
-    opacity: 0;
-    transform: translateY(-50%) scaleX(0);
-}
 
 /* Menu mobile aberto - fundo branco organizado */
 @media (max-width: 991.98px) {
@@ -878,9 +854,12 @@ h6,
     }
 }
 
+
+
+
 /* Melhorar a visibilidade do toggler */
 .navbar-toggler:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .navbar-toggler:hover .navbar-toggler-icon::before,

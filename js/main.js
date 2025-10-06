@@ -302,34 +302,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// JavaScript para alternar entre hamburger e X no toggler com animação
+
+
+// VERSÃO SIMPLIFICADA E FUNCIONAL
 document.addEventListener('DOMContentLoaded', function() {
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.getElementById('navbarCollapse');
-    const heroContainer = document.querySelector('.hero-container');
     
     if (navbarToggler && navbarCollapse) {
-        navbarToggler.addEventListener('click', function() {
-            // Alternar entre hamburger e X
-            this.classList.toggle('active');
-            
-            // Ajustar posição do hero quando menu estiver aberto
-            if (heroContainer) {
-                if (navbarCollapse.classList.contains('show')) {
-                    heroContainer.classList.remove('adjusted');
-                } else {
-                    heroContainer.classList.add('adjusted');
-                }
-            }
+        // Observar mudanças no estado do collapse
+        navbarCollapse.addEventListener('shown.bs.collapse', function () {
+            navbarToggler.classList.add('active');
         });
         
-        // Fechar menu ao clicar em um link (opcional)
+        navbarCollapse.addEventListener('hidden.bs.collapse', function () {
+            navbarToggler.classList.remove('active');
+        });
+        
+        // Fechar menu ao clicar nos links no mobile
         const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                navbarToggler.classList.remove('active');
-                if (heroContainer) {
-                    heroContainer.classList.remove('adjusted');
+                if (window.innerWidth < 992) {
+                    // Usar o método nativo do Bootstrap para fechar
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                    if (bsCollapse) {
+                        bsCollapse.hide();
+                    }
                 }
             });
         });
