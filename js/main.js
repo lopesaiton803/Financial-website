@@ -195,136 +195,49 @@ $(document).ready(function() {
 });
 
 
-// CORREÇÃO ESPECÍFICA PARA O TOGGLER MOBILE
-document.addEventListener('DOMContentLoaded', function() {
-    // Selecionar o botão do toggler e o menu
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    
-    // Função para alternar o menu
-    function toggleMenu() {
-        navbarCollapse.classList.toggle('show');
-        
-        // Alterar o ícone do toggler quando aberto/fechado
-        const togglerIcon = navbarToggler.querySelector('.navbar-toggler-icon');
-        if (navbarCollapse.classList.contains('show')) {
-            // Menu aberto - alterar para ícone X
-            togglerIcon.innerHTML = '✕';
-            togglerIcon.style.fontSize = '1.5rem';
-            togglerIcon.style.lineHeight = '1';
-        } else {
-            // Menu fechado - voltar para ícone hambúrguer
-            togglerIcon.innerHTML = '';
-            togglerIcon.style.backgroundImage = "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")";
-            togglerIcon.style.fontSize = '';
-        }
-    }
-    
-    // Adicionar evento de clique ao toggler
-    if (navbarToggler) {
-        navbarToggler.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleMenu();
-        });
-    }
-    
-    // Fechar menu ao clicar em um link
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    navLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            if (window.innerWidth < 992) {
-                navbarCollapse.classList.remove('show');
-                
-                // Restaurar ícone hambúrguer
-                const togglerIcon = navbarToggler.querySelector('.navbar-toggler-icon');
-                togglerIcon.innerHTML = '';
-                togglerIcon.style.backgroundImage = "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")";
-                togglerIcon.style.fontSize = '';
-            }
-        });
-    });
-    
-    // Fechar menu ao clicar fora dele
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
-            if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-                navbarCollapse.classList.remove('show');
-                
-                // Restaurar ícone hambúrguer
-                const togglerIcon = navbarToggler.querySelector('.navbar-toggler-icon');
-                togglerIcon.innerHTML = '';
-                togglerIcon.style.backgroundImage = "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")";
-                togglerIcon.style.fontSize = '';
-            }
-        }
-    });
-    
-    // Fechar menu ao redimensionar a tela para desktop
-    window.addEventListener('resize', function() {
-        if (window.innerWidth >= 992) {
-            navbarCollapse.classList.remove('show');
-            
-            // Restaurar ícone hambúrguer
-            const togglerIcon = navbarToggler.querySelector('.navbar-toggler-icon');
-            togglerIcon.innerHTML = '';
-            togglerIcon.style.backgroundImage = "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")";
-            togglerIcon.style.fontSize = '';
-        }
-    });
-});
-
-// VERSÃO ALTERNATIVA MAIS SIMPLES
-document.addEventListener('DOMContentLoaded', function() {
-    // Solução simples usando Bootstrap nativo
-    $('.navbar-toggler').click(function() {
-        $(this).toggleClass('active');
-        $('#navbarCollapse').collapse('toggle');
-    });
-    
-    // Fechar menu ao clicar nos links (mobile)
-    $('.navbar-nav .nav-link').click(function() {
-        if ($(window).width() < 992) {
-            $('#navbarCollapse').collapse('hide');
-            $('.navbar-toggler').removeClass('active');
-        }
-    });
-    
-    // Fechar menu ao clicar fora (mobile)
-    $(document).click(function(e) {
-        if ($(window).width() < 992) {
-            if (!$('.navbar').has(e.target).length && $('#navbarCollapse').hasClass('show')) {
-                $('#navbarCollapse').collapse('hide');
-                $('.navbar-toggler').removeClass('active');
-            }
-        }
-    });
-});
-
-
-
-
-// VERSÃO SIMPLIFICADA E FUNCIONAL
+// NAVBAR MOBILE PROFISSIONAL - CONTROLE COMPLETO
 document.addEventListener('DOMContentLoaded', function() {
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.getElementById('navbarCollapse');
+    const navbar = document.querySelector('.navbar');
+    
+    // Criar overlay para fechar o menu
+    function createOverlay() {
+        const overlay = document.createElement('div');
+        overlay.className = 'navbar-overlay';
+        document.body.appendChild(overlay);
+        return overlay;
+    }
+    
+    const overlay = createOverlay();
     
     if (navbarToggler && navbarCollapse) {
-        // Observar mudanças no estado do collapse
-        navbarCollapse.addEventListener('shown.bs.collapse', function () {
-            navbarToggler.classList.add('active');
+        // Controle do estado do menu
+        navbarCollapse.addEventListener('show.bs.collapse', function () {
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            navbarToggler.setAttribute('aria-expanded', 'true');
         });
         
-        navbarCollapse.addEventListener('hidden.bs.collapse', function () {
-            navbarToggler.classList.remove('active');
+        navbarCollapse.addEventListener('hide.bs.collapse', function () {
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+            navbarToggler.setAttribute('aria-expanded', 'false');
         });
         
-        // Fechar menu ao clicar nos links no mobile
+        // Fechar menu ao clicar no overlay
+        overlay.addEventListener('click', function() {
+            const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+            if (bsCollapse) {
+                bsCollapse.hide();
+            }
+        });
+        
+        // Fechar menu ao clicar nos links
         const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
         navLinks.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
                 if (window.innerWidth < 992) {
-                    // Usar o método nativo do Bootstrap para fechar
                     const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
                     if (bsCollapse) {
                         bsCollapse.hide();
@@ -332,5 +245,63 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+        
+        // Fechar menu ao redimensionar para desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 992) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse && navbarCollapse.classList.contains('show')) {
+                    bsCollapse.hide();
+                }
+            }
+        });
+    }
+    
+    // Efeito de scroll na navbar
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Prevenir conflitos com outros scripts
+    $(document).ready(function() {
+        // Garantir que o Bootstrap Collapse funcione corretamente
+        $('#navbarCollapse').on('show.bs.collapse', function () {
+            $('.navbar-toggler').addClass('active');
+        });
+        
+        $('#navbarCollapse').on('hide.bs.collapse', function () {
+            $('.navbar-toggler').removeClass('active');
+        });
+        
+        // Fechar menu ao clicar fora (backup)
+        $(document).on('click', function(e) {
+            if ($(window).width() < 992) {
+                if (!$('.navbar').has(e.target).length && 
+                    $('#navbarCollapse').hasClass('show')) {
+                    const bsCollapse = new bootstrap.Collapse($('#navbarCollapse')[0]);
+                    bsCollapse.hide();
+                }
+            }
+        });
+    });
+});
+
+// INICIALIZAÇÃO ADICIONAL PARA ANIMAÇÕES
+document.addEventListener('DOMContentLoaded', function() {
+    // Adicionar classe inicial baseada no scroll
+    if (window.scrollY > 100) {
+        document.querySelector('.navbar').classList.add('scrolled');
+    }
+    
+    // Garantir que o menu inicie fechado no mobile
+    if (window.innerWidth < 992) {
+        const navbarCollapse = document.getElementById('navbarCollapse');
+        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            navbarCollapse.classList.remove('show');
+        }
     }
 });

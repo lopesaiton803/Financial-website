@@ -1,15 +1,32 @@
 /********** Template CSS **********/
+
+/* ===== VARIÁVEIS CSS ===== */
 :root {
     --primary: #355EFC;
-   
     --tertiary: #555555;
     --light: #DFE4FD;
     --dark: #011A41;
 }
 
+/* ===== ESTILOS GERAIS ===== */
+a {
+    color: #eeeeee;
+}
 
+/* Tipografia e pesos de fonte */
+h1, .h1, h2, .h2, .fw-bold {
+    font-weight: 700 !important;
+}
 
+h3, .h3, h4, .h4, .fw-medium {
+    font-weight: 600 !important;
+}
 
+h5, .h5, h6, .h6, .fw-semi-bold {
+    font-weight: 500 !important;
+}
+
+/* ===== BOTÃO VOLTAR AO TOPO ===== */
 .back-to-top {
     position: fixed;
     display: none;
@@ -18,36 +35,7 @@
     z-index: 99;
 }
 
-a{
-    color: #eeeeee;
-}
-
-h1,
-.h1,
-h2,
-.h2,
-.fw-bold {
-    font-weight: 700 !important;
-}
-
-h3,
-.h3,
-h4,
-.h4,
-.fw-medium {
-    font-weight: 600 !important;
-}
-
-h5,
-.h5,
-h6,
-.h6,
-.fw-semi-bold {
-    font-weight: 500 !important;
-}
-
-
-/*** Spinner ***/
+/* ===== SPINNER DE CARREGAMENTO ===== */
 #spinner {
     opacity: 0;
     visibility: hidden;
@@ -61,8 +49,7 @@ h6,
     opacity: 1;
 }
 
-
-/*** Button ***/
+/* ===== ESTILOS DE BOTÕES ===== */
 .btn {
     transition: .5s;
     font-weight: 500;
@@ -73,6 +60,7 @@ h6,
     color: var(--light);
 }
 
+/* Botões quadrados */
 .btn-square {
     width: 38px;
     height: 38px;
@@ -98,61 +86,40 @@ h6,
     font-weight: normal;
 }
 
-
-/*** Navbar ***/
+/* ===== NAVBAR/NAVEGAÇÃO ===== */
 .fixed-top {
     transition: .5s;
 }
-/* Desktop */
+
+/* Navbar Desktop */
 .navbar {
     min-height: 70px;
 }
 
+/* Logo da marca */
 .navbar-brand img {
     width: 180px;
     height: auto;
     max-height: 80px;
     object-fit: contain;
-    /* Adiciona uma borda sutil para contraste */
-     filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)) 
+    /* Efeito de brilho na logo */
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)) 
             drop-shadow(0 0 5px rgba(255, 255, 255, 0.7))
             drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-} 
+}
 
-/* Quando o navbar ficar branco, remove o efeito */
+/* Remove efeito quando navbar fica branco */
 .navbar.bg-white .navbar-brand img {
     filter: none;
 }
 
-/* Tablet */
-@media (max-width: 991.98px) {
-    .navbar {
-        min-height: 65px;
-    }
-    
-    .navbar-brand img {
-        height: 45px;
-        max-width: 160px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .navbar {
-        min-height: 60px;
-    }
-    
-    .navbar-brand img {
-        height: 40px;
-        max-width: 140px;
-    }
-}
-
+/* Top bar acima do navbar */
 .top-bar {
     height: 45px;
     border-bottom: 4px solid rgba(40, 69, 185, 0.07);
 }
 
+/* Seta personalizada nos dropdowns */
 .navbar .dropdown-toggle::after {
     border: none;
     content: "\f107";
@@ -162,6 +129,7 @@ h6,
     margin-left: 8px;
 }
 
+/* Links de navegação */
 .navbar .navbar-nav .nav-link {
     padding: 25px 15px;
     color: var(--tertiary);
@@ -174,42 +142,46 @@ h6,
     color: blue;
 }
 
-@media (max-width: 991.98px) {
-    .navbar .navbar-nav {
-        margin-top: 10px;
-        border-top: 1px solid rgba(0, 0, 0, .07);
-        background: #FFFFFF;
-    }
-
-    .navbar .navbar-nav .nav-link {
-        padding: 10px 0;
-    }
+/* Estados do navbar com scroll */
+.navbar-scrolled .nav-link {
+    color: var(--primary) !important;
 }
 
-@media (min-width: 992px) {
-    .navbar .nav-item .dropdown-menu {
-        display: block;
-        visibility: hidden;
-        top: 100%;
-        transform: rotateX(-75deg);
-        transform-origin: 0% 0%;
-        transition: .5s;
-        opacity: 0;
-    }
-
-    .navbar .nav-item:hover .dropdown-menu {
-        transform: rotateX(0deg);
-        visibility: visible;
-        transition: .5s;
-        opacity: 1;
-    }
+.navbar .nav-link {
+    transition: color 0.3s ease;
 }
-/* Estilos para o navbar toggler */
+
+.navbar-scrolled .navbar-brand h1 {
+    color: var(--primary) !important;
+}
+
+/* ===== NAVBAR PRINCIPAL ===== */
+.container-fluid.fixed-top {
+    z-index: 1030;
+}
+
+.navbar {
+    min-height: 80px;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand img {
+    width: 180px;
+    height: auto;
+    max-height: 50px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* ===== NAVBAR TOGGLER PROFISSIONAL ===== */
 .navbar-toggler {
     border: none;
     background: transparent !important;
-    padding: 4px 8px;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
     position: relative;
+    transition: all 0.3s ease;
 }
 
 .navbar-toggler:focus {
@@ -217,13 +189,14 @@ h6,
     outline: none !important;
 }
 
-/* Animação do ícone hamburger para X */
+/* Ícone Hamburger Animado */
 .navbar-toggler .navbar-toggler-icon {
     width: 24px;
-    height: 24px;
+    height: 18px;
     background-image: none !important;
     position: relative;
     transition: all 0.3s ease;
+    display: block;
 }
 
 .navbar-toggler .navbar-toggler-icon::before,
@@ -235,14 +208,15 @@ h6,
     height: 2px;
     background-color: white;
     transition: all 0.3s ease;
+    transform-origin: center;
 }
 
 .navbar-toggler .navbar-toggler-icon::before {
-    top: 6px;
+    top: 0;
 }
 
 .navbar-toggler .navbar-toggler-icon::after {
-    bottom: 6px;
+    bottom: 0;
 }
 
 .navbar-toggler .navbar-toggler-icon span {
@@ -254,17 +228,16 @@ h6,
     height: 2px;
     background-color: white;
     transition: all 0.3s ease;
+    opacity: 1;
 }
 
-/* Estado quando o menu está aberto (transforma em X) */
+/* Animação para X quando menu está aberto */
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
-    transform: rotate(45deg);
-    top: 50%;
+    transform: rotate(45deg) translate(6px, 6px);
 }
 
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
-    transform: rotate(-45deg);
-    bottom: 50%;
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon span {
@@ -272,82 +245,158 @@ h6,
     transform: scale(0);
 }
 
-/* Estilos para o menu mobile */
+/* ===== MENU MOBILE ===== */
 @media (max-width: 991.98px) {
-    .navbar-collapse {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(1, 26, 65, 0.95);
-        backdrop-filter: blur(10px);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        z-index: 1000;
+    .navbar {
+        min-height: 70px;
     }
     
-    .navbar-nav .nav-link {
-        padding: 12px 20px !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    .navbar-brand img {
+        height: 45px;
+        max-width: 160px;
+    }
+    
+    /* Menu Collapse - Estilo Profissional */
+    .navbar-collapse {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #011a41 0%, #023e8a 100%);
+        backdrop-filter: blur(20px);
+        padding: 30px 20px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1029;
+        overflow-y: auto;
+    }
+    
+    .navbar-collapse.show {
+        transform: translateX(0);
+    }
+    
+    .navbar-collapse.collapsing {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    /* Itens do Menu Mobile */
+    .navbar-nav {
+        width: 100%;
         text-align: center;
     }
     
-    .navbar-nav .nav-link:last-child {
-        border-bottom: none;
+    .navbar-nav .nav-item {
+        margin-bottom: 15px;
     }
     
-    .navbar-nav .nav-link:hover {
+    .navbar-nav .nav-link {
+        color: white !important;
+        font-size: 1.2rem;
+        font-weight: 500;
+        padding: 15px 20px !important;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+    
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
         background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Overlay quando menu está aberto */
+    .navbar-overlay {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1028;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-overlay.show {
+        opacity: 1;
+        visibility: visible;
     }
 }
 
+/* ===== NAVBAR SCROLL EFFECT ===== */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
 
+.navbar.scrolled .navbar-toggler .navbar-toggler-icon::before,
+.navbar.scrolled .navbar-toggler .navbar-toggler-icon::after,
+.navbar.scrolled .navbar-toggler .navbar-toggler-icon span {
+    background-color: #333;
+}
 
+.navbar.scrolled .nav-link {
+    color: #333 !important;
+}
 
+/* ===== DROPDOWNS (se tiver) ===== */
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        visibility: hidden;
+        top: 100%;
+        transform: translateY(-10px);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        transform: translateY(0);
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/* Mobile pequeno */
+@media (max-width: 576px) {
+    .navbar {
+        min-height: 65px;
+    }
+    
+    .navbar-brand img {
+        height: 40px;
+        max-width: 140px;
+    }
+    
+    .navbar-collapse {
+        top: 65px;
+    }
+    
+    .navbar-overlay {
+        top: 65px;
+    }
+}
+
+/* ===== HERO/CARROSSEL PRINCIPAL ===== */
 .hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(1, 26, 65, 0.3); /* azul escuro com 60% opacidade */
-  z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(1, 26, 65, 0.3); /* azul escuro com 30% opacidade */
+    z-index: 1;
 }
 
 .carousel-caption {
-  position: absolute;
-  z-index: 2; /* garante que o texto fique acima do overlay */
-}
-
-/* Reset completo de estilos problemáticos */
-.navbar.fixed-top {
-    z-index: 1030;
-    overflow: visible !important;
-}
-
-.navbar > .container-fluid {
-    overflow: visible !important;
-    flex-wrap: nowrap;
-}
-
-.navbar-collapse.collapse {
-    overflow: visible !important;
-    display: flex !important;
-}
-
-/* Garantir que os itens não quebrem linha */
-.navbar-nav {
-    flex-wrap: nowrap;
-    overflow: visible;
-}
-
-.navbar-nav .nav-item {
-    white-space: nowrap;
-}
-
-
-
-/*** Header ***/
-.carousel-caption {
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -356,13 +405,10 @@ h6,
     align-items: center;
     justify-content: center;
     text-align: start;
-    z-index: 1;
+    z-index: 2; /* garante que o texto fique acima do overlay */
 }
 
-
-
-
-
+/* Controles do carrossel */
 .carousel-control-prev,
 .carousel-control-next {
     width: 3rem;
@@ -384,6 +430,7 @@ h6,
     border-radius: 3rem 0 0 3rem;
 }
 
+/* Ajustes do hero para mobile */
 @media (max-width: 768px) {
     #header-carousel .carousel-item {
         position: relative;
@@ -396,8 +443,15 @@ h6,
         height: 100%;
         object-fit: cover;
     }
+    
+    /* Ajuste do hero quando menu está aberto */
+    .hero-container.adjusted {
+        transform: translateY(-80px);
+        transition: transform 0.3s ease;
+    }
 }
 
+/* ===== PAGE HEADER (CABEÇALHO DE PÁGINAS) ===== */
 .page-header {
     padding-top: 12rem;
     padding-bottom: 6rem;
@@ -413,33 +467,13 @@ h6,
 .page-header .breadcrumb-item+.breadcrumb-item::before {
     color: var(--tertiary);
 }
-.navbar-scrolled .nav-link {
-    color: var(--primary) !important;
-}
 
-.navbar .nav-link {
-    transition: color 0.3s ease;
-}
-
-/* Quando a navbar ganhar a classe .navbar-scrolled */
-
-
-.navbar-scrolled .nav-link {
-    color: var(--primary) !important;
-}
-
-.navbar-scrolled .navbar-brand h1 {
-    color: var(--primary) !important;
-}
-
-
-/*** Facts ***/
+/* ===== SEÇÃO FACTS (ESTATÍSTICAS) ===== */
 .facts {
     background: linear-gradient(rgba(53, 94, 252, .95), rgba(53, 94, 252, .95)), url(../img/bg.png);
 }
 
-
-/*** Callback ***/
+/* ===== SEÇÃO CALLBACK (FORMULÁRIO) ===== */
 .callback {
     position: relative;
 }
@@ -455,8 +489,7 @@ h6,
     z-index: -1;
 }
 
-
-/*** Feature ***/
+/* ===== SEÇÃO FEATURE (CARACTERÍSTICAS) ===== */
 .feature .feature-box,
 .feature .feature-box * {
     transition: .5s;
@@ -471,8 +504,11 @@ h6,
     color: #FFFFFF !important;
 }
 
+.feature-box a {
+    color: #011A41;
+}
 
-/*** Service ***/
+/* ===== SEÇÃO SERVICE (SERVIÇOS) ===== */
 .service .nav .nav-link {
     transition: .5s;
 }
@@ -490,17 +526,13 @@ h6,
     color: #FFFFFF !important;
 }
 
-.feature-box a{
-    color: #011A41;
-}
-
-
-/*** Project ***/
+/* ===== SEÇÃO PROJECT (PROJETOS) ===== */
 .project-item,
 .project-item .project-img {
     position: relative;
 }
 
+/* Overlay de projetos */
 .project-item .project-img a {
     position: absolute;
     width: 100%;
@@ -520,6 +552,7 @@ h6,
     opacity: 1;
 }
 
+/* Título do projeto */
 .project-item .project-title {
     position: absolute;
     top: 3rem;
@@ -548,6 +581,7 @@ h6,
     color: #FFFFFF;
 }
 
+/* Navegação do carrossel de projetos */
 .project-carousel .owl-nav {
     margin-top: 25px;
     display: flex;
@@ -575,8 +609,7 @@ h6,
     color: var(--light);
 }
 
-
-/*** Team ***/
+/* ===== SEÇÃO TEAM (EQUIPE) ===== */
 .team-item {
     position: relative;
     padding: 4rem 0;
@@ -617,6 +650,7 @@ h6,
     color: #FFFFFF;
 }
 
+/* Social da equipe */
 .team-item .team-social .btn {
     background: var(--light);
     color: var(--primary);
@@ -631,8 +665,7 @@ h6,
     color: var(--light);
 }
 
-
-/*** Testimonial ***/
+/* ===== SEÇÃO TESTIMONIAL (DEPOIMENTOS) ===== */
 .testimonial-item {
     position: relative;
     text-align: center;
@@ -653,6 +686,7 @@ h6,
     transform: translateX(-50%);
 }
 
+/* Setas do testimonial */
 .testimonial-item .testimonial-text::before {
     position: absolute;
     content: "";
@@ -673,6 +707,7 @@ h6,
     border-color: #FFFFFF transparent transparent transparent;
 }
 
+/* Carrossel de depoimentos */
 .testimonial-carousel .owl-item img {
     margin: 0 auto;
     width: 100px;
@@ -717,8 +752,7 @@ h6,
     background: var(--primary);
 }
 
-
-/*** Footer ***/
+/* ===== FOOTER ===== */
 .footer .btn.btn-link {
     display: block;
     margin-bottom: 5px;
@@ -744,6 +778,7 @@ h6,
     box-shadow: none;
 }
 
+/* Copyright */
 .copyright {
     color: var(--light);
     background: #000B1C;
@@ -757,20 +792,31 @@ h6,
     color: var(--primary);
 }
 
-
-/* Quando a navbar estiver no mobile */
-@media (max-width: 991.98px) {
-    .navbar-collapse.show .nav-link {
-        color: var(--primary) !important;
-    }
+/* ===== SEÇÃO CTA PARALLAX (CHAMADA PARA AÇÃO) ===== */
+.cta-parallax {
+    position: relative;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
+.cta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 94, 252, 0.6); /* azul translúcido */
+}
 
+.cta-content {
+    position: relative;
+    z-index: 2;
+}
 
-
-
-
-/* GARANTIR COMPATIBILIDADE COM BOOTSTRAP */
+/* ===== COMPATIBILIDADE COM BOOTSTRAP ===== */
 .collapse:not(.show) {
     display: none;
 }
@@ -781,81 +827,25 @@ h6,
     transition: height 0.35s ease;
 }
 
-
-
-
-
-/* aleterations */
-
- .cta-parallax {
-    position: relative;
-    overflow: hidden;
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .cta-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(53, 94, 252, 0.6); /* azul translúcido */
-  }
-  .cta-content {
-    position: relative;
-    z-index: 2;
-  }
-
-
-
-
-
-
-
-
-
-/* Menu mobile aberto - fundo branco organizado */
-@media (max-width: 991.98px) {
-    .navbar-collapse {
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 8px;
-        margin-top: 15px;
-        box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-        border: 1px solid rgba(0,0,0,0.1);
-    }
-    
-    .navbar-nav .nav-link {
-        padding: 12px 15px !important;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        color: #333 !important;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-    
-    .navbar-nav .nav-link:last-child {
-        border-bottom: none;
-    }
-    
-    .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link.active {
-        color: #355EFC !important;
-        background-color: rgba(53, 94, 252, 0.08);
-        border-radius: 5px;
-        transform: translateX(5px);
-    }
-    
-    /* Ajuste do hero quando menu está aberto */
-    .hero-container.adjusted {
-        transform: translateY(-80px);
-        transition: transform 0.3s ease;
-    }
+/* Garantir que os itens do navbar não quebrem linha */
+.navbar > .container-fluid {
+    overflow: visible !important;
+    flex-wrap: nowrap;
 }
 
+.navbar-collapse.collapse {
+    overflow: visible !important;
+    display: flex !important;
+}
 
+.navbar-nav {
+    flex-wrap: nowrap;
+    overflow: visible;
+}
 
+.navbar-nav .nav-item {
+    white-space: nowrap;
+}
 
 /* Melhorar a visibilidade do toggler */
 .navbar-toggler:hover {
@@ -866,4 +856,11 @@ h6,
 .navbar-toggler:hover .navbar-toggler-icon::after,
 .navbar-toggler:hover .navbar-toggler-icon span {
     background-color: #ffffff;
+}
+
+/* Quando a navbar estiver no mobile */
+@media (max-width: 991.98px) {
+    .navbar-collapse.show .nav-link {
+        color: var(--primary) !important;
+    }
 }
