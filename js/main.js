@@ -16,7 +16,7 @@
     new WOW().init();
 
 
-    // Fixed Navbar - CORREÇÃO PARA MOBILE
+    // Fixed Navbar - VERSÃO CORRIGIDA
     $(window).scroll(function () {
         if ($(window).width() < 992) {
             // Comportamento simplificado para mobile
@@ -26,19 +26,12 @@
                 $('.fixed-top').removeClass('bg-white shadow');
             }
         } else {
-            // Comportamento para desktop
+            // COMPORTAMENTO CORRIGIDO PARA DESKTOP
             if ($(this).scrollTop() > 45) {
-                $('.fixed-top').addClass('bg-white shadow').css('top', -45);
+                $('.fixed-top').addClass('bg-white shadow');
             } else {
-                $('.fixed-top').removeClass('bg-white shadow').css('top', 0);
+                $('.fixed-top').removeClass('bg-white shadow');
             }
-        }
-    });
-
-    // CORREÇÃO: Reset do top quando redimensionar a janela
-    $(window).resize(function () {
-        if ($(window).width() >= 992) {
-            $('.fixed-top').css('top', '0');
         }
     });
     
@@ -106,7 +99,7 @@
         responsive: {
             0:{
                 items:1,
-                center: false // Corrige centralização em mobile
+                center: false
             },
             576:{
                 items:1,
@@ -202,9 +195,6 @@ $(document).ready(function() {
 });
 
 
-
-
-
 // CORREÇÃO ESPECÍFICA PARA O TOGGLER MOBILE
 document.addEventListener('DOMContentLoaded', function() {
     // Selecionar o botão do toggler e o menu
@@ -219,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const togglerIcon = navbarToggler.querySelector('.navbar-toggler-icon');
         if (navbarCollapse.classList.contains('show')) {
             // Menu aberto - alterar para ícone X
-            togglerIcon.innerHTML = '✕'; // Ícone X
+            togglerIcon.innerHTML = '✕';
             togglerIcon.style.fontSize = '1.5rem';
             togglerIcon.style.lineHeight = '1';
         } else {
@@ -243,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     navLinks.forEach(function(link) {
         link.addEventListener('click', function() {
-            if (window.innerWidth < 992) { // Apenas no mobile
+            if (window.innerWidth < 992) {
                 navbarCollapse.classList.remove('show');
                 
                 // Restaurar ícone hambúrguer
@@ -284,7 +274,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// VERSÃO ALTERNATIVA MAIS SIMPLES (se a anterior não funcionar)
+// VERSÃO ALTERNATIVA MAIS SIMPLES
 document.addEventListener('DOMContentLoaded', function() {
     // Solução simples usando Bootstrap nativo
     $('.navbar-toggler').click(function() {
@@ -318,30 +308,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbarCollapse = document.getElementById('navbarCollapse');
     const heroContainer = document.querySelector('.hero-container');
     
-    navbarToggler.addEventListener('click', function() {
-        // Alternar entre hamburger e X
-        this.classList.toggle('active');
-        
-        // Ajustar posição do hero quando menu estiver aberto
-        if (navbarCollapse.classList.contains('show')) {
-            heroContainer.classList.remove('adjusted');
-        } else {
-            heroContainer.classList.add('adjusted');
-        }
-    });
-    
-    // Fechar menu ao clicar em um link (opcional)
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navbarToggler.classList.remove('active');
-            heroContainer.classList.remove('adjusted');
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener('click', function() {
+            // Alternar entre hamburger e X
+            this.classList.toggle('active');
+            
+            // Ajustar posição do hero quando menu estiver aberto
+            if (heroContainer) {
+                if (navbarCollapse.classList.contains('show')) {
+                    heroContainer.classList.remove('adjusted');
+                } else {
+                    heroContainer.classList.add('adjusted');
+                }
+            }
         });
-    });
+        
+        // Fechar menu ao clicar em um link (opcional)
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navbarToggler.classList.remove('active');
+                if (heroContainer) {
+                    heroContainer.classList.remove('adjusted');
+                }
+            });
+        });
+    }
 });
-
-
-// ---------------------------------------------------
-
-
-
