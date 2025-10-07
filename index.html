@@ -79,6 +79,45 @@
 </head>
 
 <body>
+<!-- Script do EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+  // 🔹 Inicializa o EmailJS com a sua chave pública
+  emailjs.init("oo1Tjco_rV8Z8bLHN"); // Exemplo: public_QWERT123456
+
+  // 🔹 Captura o formulário e a área de status
+  const form = document.getElementById("contact-form");
+  const statusDiv = document.getElementById("form-status");
+
+  // 🔹 Adiciona evento ao enviar o formulário
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // impede reload da página
+
+    // Se quiser, remove o onclick do botão (não é necessário usar sendMail())
+    const serviceID = "lopesaiton803";     // Exemplo: service_lopesaiton803
+    const templateID = "template_8hgfbx6";   // Exemplo: template_8hgfbx6
+
+    // Coleta os dados do formulário
+    const templateParams = {
+      name: form.name.value,
+      email: form.email.value,
+      subject: form.subject.value,
+      message: form.message.value,
+    };
+
+    // Envia o email
+    emailjs.send(serviceID, templateID, templateParams)
+      .then(() => {
+        statusDiv.innerHTML = '<div class="alert alert-success mt-3">✅ Mensagem enviada com sucesso!</div>';
+        form.reset();
+      })
+      .catch((err) => {
+        console.error(err);
+        statusDiv.innerHTML = '<div class="alert alert-danger mt-3">❌ Erro ao enviar mensagem. Tente novamente.</div>';
+      });
+  });
+</script>
 
 <!-- Navbar Start -->
 <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
@@ -413,61 +452,67 @@
    
     <!-- Restante do código permanece igual -->
     <!-- Contact Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Contato</p>
-                    <h1 class="display-5 mb-4">Se Tem Alguma Pergunta, Entre em Contato Conosco</h1>
-                    <p class="mb-4">
-                        O formulário de contato está atualmente inativo. Obtenha um formulário funcional e pronto para uso com Ajax & PHP em poucos minutos. Basta copiar e colar os arquivos, adicionar um pouco de código e pronto. 
-                        <a href="https://htmlcodex.com/contact-form">Baixar Agora</a>.
-                    </p>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Seu Nome">
-                                    <label for="name">Seu Nome</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Seu Email">
-                                    <label for="email">Seu Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Assunto">
-                                    <label for="subject">Assunto</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Escreva sua mensagem aqui" id="message"
-                                        style="height: 100px"></textarea>
-                                    <label for="message">Mensagem</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary py-3 px-5" type="submit">Enviar Mensagem</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px;">
-                    <div class="position-relative rounded overflow-hidden h-100">
-                        <iframe class="position-relative w-100 h-100"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.755878345879!2d32.56712231524955!3d-25.965119783598112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7b0f88b8c15f5%3A0x9a1b3a5b1c0d1f3a!2sAvenida%2024%20de%20Julho%2C%20Maputo%2C%20Mo%C3%A7ambique!5e0!3m2!1spt-PT!2smz!4v1696263890143!5m2!1spt-PT!2smz"
-                            frameborder="0" style="min-height: 450px; border:0;" allowfullscreen="" aria-hidden="false"
-                            tabindex="0"></iframe>
-                    </div>
-                </div>
+   <!-- Contact Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Contato</p>
+        <h1 class="display-5 mb-4">Se Tem Alguma Pergunta, Entre em Contato Conosco</h1>
+
+        <form id="contact-form" class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Seu Nome" required>
+                <label for="name">Seu Nome</label>
+                <div class="invalid-feedback">Por favor, insira seu nome.</div>
+              </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Seu Email" required>
+                <label for="email">Seu Email</label>
+                <div class="invalid-feedback">Por favor, insira um email válido.</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Assunto" required>
+                <label for="subject">Assunto</label>
+                <div class="invalid-feedback">Por favor, insira o assunto.</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Escreva sua mensagem aqui" id="message" name="message"
+                  style="height: 100px" required></textarea>
+                <label for="message">Mensagem</label>
+                <div class="invalid-feedback">Por favor, insira sua mensagem.</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary py-3 px-5" type="submit" onclick="sendMail()">Enviar Mensagem</button>
+            </div>
+          </div>
+        </form>
+
+        <div id="form-status" class="mt-3"></div>
+      </div>
+
+      <div class="col-lg-6" style="min-height: 450px;">
+        <div class="position-relative rounded overflow-hidden h-100">
+          <iframe class="position-relative w-100 h-100"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.755878345879!2d32.56712231524955!3d-25.965119783598112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7b0f88b8c15f5%3A0x9a1b3a5b1c0d1f3a!2sAvenida%2024%20de%20Julho%2C%20Maputo%2C%20Mo%C3%A7ambique!5e0!3m2!1spt-PT!2smz!4v1696263890143!5m2!1spt-PT!2smz"
+            frameborder="0" style="min-height: 450px; border:0;" allowfullscreen="" aria-hidden="false"
+            tabindex="0"></iframe>
         </div>
+      </div>
     </div>
-    <!-- Contact End -->
+  </div>
+</div>
+<!-- Contact End -->
+
 
     <!-- Restante do código permanece igual -->
     <!-- Footer Start -->

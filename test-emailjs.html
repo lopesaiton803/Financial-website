@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste EmailJS</title>
+</head>
+<body>
+  <h2>Formulário de Teste EmailJS</h2>
+
+  <form id="contact-form">
+    <input type="text" name="from_name" placeholder="Seu nome" required><br><br>
+    <input type="email" name="from_email" placeholder="Seu email" required><br><br>
+    <textarea name="message" placeholder="Digite sua mensagem" required></textarea><br><br>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="form-status" style="margin-top: 20px; font-weight: bold;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Inicializa EmailJS
+    emailjs.init("oo1Tjco_rV8Z8bLHN"); // ✅ SUA PUBLIC KEY
+
+    const form = document.getElementById("contact-form");
+    const statusDiv = document.getElementById("form-status");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const serviceID = "lopesaiton803";    // ✅ SEU SERVICE ID
+      const templateID = "template_8hgfbx6"; // ✅ SEU TEMPLATE ID
+
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+          statusDiv.innerHTML = "✅ Mensagem enviada com sucesso!";
+          statusDiv.style.color = "green";
+          form.reset();
+        })
+        .catch((err) => {
+          console.error("Erro:", err);
+          statusDiv.innerHTML = "❌ Erro ao enviar: " + JSON.stringify(err);
+          statusDiv.style.color = "red";
+        });
+    });
+  </script>
+</body>
+</html>
